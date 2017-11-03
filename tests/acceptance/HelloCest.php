@@ -14,8 +14,15 @@ class HelloCest
     // tests
     public function tryToTest(AcceptanceTester $I)
     {
-        $I->sendAjaxGetRequest('/hello');
+        $I->sendGET('/hello', ['name' => 'Ben']);
         $I->seeResponseCodeIs(200);
-        $I->seeResponseContains('hello world');
+        $I->seeResponseContains('hello Ben');
+    }
+
+    public function stripsHtmlTags(AcceptanceTester $I)
+    {
+        $I->sendGET('/hello', ['name' => '</b>Ben</b>']);
+        $I->seeResponseCodeIs(200);
+        $I->seeResponseContains('hello Ben');
     }
 }

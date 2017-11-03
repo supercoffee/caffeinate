@@ -1,3 +1,4 @@
 vendor/
 .idea/cc
 .idea
+tests/_output

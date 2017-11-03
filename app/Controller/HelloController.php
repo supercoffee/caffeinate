@@ -11,7 +11,8 @@ class HelloController
 {
 
     public function hello(ServerRequestInterface $request, ResponseInterface $response) {
-        $response->getBody()->write('hello world');
+        $name  = $request->getQueryParams()['name'];
+        $response->getBody()->write("hello $name");
         return $response;
     }
 
